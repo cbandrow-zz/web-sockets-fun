@@ -17,29 +17,24 @@ io.on('connection', function(socket){
     io.emit('log out');
   });
 
-  // socket.on('chat message', function(data){
-  //   // io.broadcast.emit('chat message', data);
-  //   console.log('message: ' + data);
-  // });
-
   socket.on('typing', (msg)=>{
-    io.emit('typing event', msg)
-  })
+    io.emit('typing event', msg);
+  });
 
   socket.on('nottyping', ()=>{
-    io.emit('end typing')
-  })
+    io.emit('end typing');
+  });
 
   socket.on('user signon', (user) =>{
-    io.emit('signon event', user)
+    io.emit('signon event', user);
   })
 });
 
 io.on('chat message', function(socket){
   socket.on('chat message', function(data){
     io.broadcast.emit('receive message', data);
-  })
-})
+  });
+});
 
 http.listen(3000, () =>{
   console.log('Listening on *:3000')

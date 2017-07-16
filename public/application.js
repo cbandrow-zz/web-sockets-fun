@@ -48,9 +48,6 @@ $(function () {
       }
     })
 
-    // $('#m').on('keyup', ()=>{
-    // })
-
     socket.on('receive message', function(data){
       $('#messages').append($('<li>').text(`${data.user}: ${data.message}`));
     });
