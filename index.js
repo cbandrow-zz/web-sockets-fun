@@ -16,13 +16,19 @@ io.on('connection', function(socket){
   socket.on('disconnect', function(){
     io.emit('log out');
   });
-});
 
-io.on('connection', function(socket){
   socket.on('chat message', function(msg){
     io.emit('chat message', msg);
     console.log('message: ' + msg);
   });
+
+  socket.on('typing', (msg)=>{
+    io.emit('typing event', msg)
+  })
+
+  socket.on('nottyping', ()=>{
+    io.emit('end typing')
+  })
 });
 
 http.listen(3000, () =>{
